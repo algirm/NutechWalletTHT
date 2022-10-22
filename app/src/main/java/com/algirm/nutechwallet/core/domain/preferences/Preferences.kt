@@ -4,7 +4,6 @@ import com.algirm.nutechwallet.core.domain.model.UserInfo
 
 interface Preferences {
 
-    fun saveIsLogin(isLogin: Boolean)
     fun loadIsLogin(): Boolean
 
     fun saveUserToken(token: String)

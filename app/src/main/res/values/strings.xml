@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Nutech Wallet</string>
+    <string name="error_cant_empty">Can\'t Empty</string>
+    <string name="error_invalid_email">Invalid Email</string>
 </resources>

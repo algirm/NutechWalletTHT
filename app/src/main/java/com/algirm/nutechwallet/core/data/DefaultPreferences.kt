@@ -12,17 +12,13 @@ import com.algirm.nutechwallet.core.domain.preferences.Preferences.Companion.KEY
 class DefaultPreferences(
     private val sharedPref: SharedPreferences
 ) : Preferences {
-    override fun saveIsLogin(isLogin: Boolean) {
-        sharedPref.edit()
-            .putBoolean(KEY_IS_LOGIN, isLogin)
-            .apply()
-    }
 
     override fun loadIsLogin(): Boolean {
-        return sharedPref.getBoolean(
-            KEY_IS_LOGIN,
-            false
+        val token = sharedPref.getString(
+            KEY_USER_TOKEN,
+            ""
         )
+        return !token.isNullOrBlank()
     }
 
     override fun saveUserToken(token: String) {
@@ -35,7 +31,7 @@ class DefaultPreferences(
         return sharedPref.getString(
             KEY_USER_TOKEN,
             null
-        ) ?: "user_token"
+        ) ?: ""
     }
 
     override fun saveUserEmail(email: String) {
@@ -60,11 +56,13 @@ class DefaultPreferences(
         val email = sharedPref.getString(KEY_USER_EMAIL, null)
         val firstName = sharedPref.getString(KEY_USER_FIRST_NAME, null)
         val lastName = sharedPref.getString(KEY_USER_LAST_NAME, null)
+        val token = sharedPref.getString(KEY_USER_TOKEN, null)
 
         return UserInfo(
             email = email ?: "",
             firstName = firstName ?: "",
-            lastName = lastName ?: ""
+            lastName = lastName ?: "",
+            token = token
         )
     }
 }
